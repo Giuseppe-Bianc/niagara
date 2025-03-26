@@ -90,10 +90,14 @@ macro(niagara_setup_options)
 endmacro()
 
 macro(niagara_global_options)
+  include(cmake/Simd.cmake)
+  check_all_simd_features()
+  print_simd_support()
   if(niagara_ENABLE_IPO)
     include(cmake/InterproceduralOptimization.cmake)
     niagara_enable_ipo()
   endif()
+
 
   niagara_supports_sanitizers()
 
